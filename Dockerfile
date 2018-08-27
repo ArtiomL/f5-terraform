@@ -13,7 +13,7 @@ RUN apk add --update --no-cache coreutils git jq && \
 
 # Terraform
 COPY / /opt/terraform/
-WORKDIR /opt/terraform/
+WORKDIR /opt/terraform/cfg
 RUN wget -O terraform.zip $(wget -qO- https://releases.hashicorp.com/index.json | jq '{terraform}' | egrep "linux.*amd64" | sort --version-sort -r | head -1 | awk -F[\"] '{print $4}') && \
 	unzip terraform.zip && \
 	rm terraform.zip && \
