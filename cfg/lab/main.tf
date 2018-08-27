@@ -63,13 +63,13 @@ resource "aws_route_table" "public" {
 }
 
 # Assign route table to management subnet
-resource "aws_route_table_association" "rta-mgmt" {
+resource "aws_route_table_association" "mgmt" {
 	subnet_id = "${aws_subnet.mgmt.id}"
 	route_table_id = "${aws_route_table.public.id}"
 }
 
 # Assign route table to external subnet
-resource "aws_route_table_association" "rta-ext" {
+resource "aws_route_table_association" "ext" {
 	subnet_id = "${aws_subnet.ext.id}"
 	route_table_id = "${aws_route_table.public.id}"
 }
