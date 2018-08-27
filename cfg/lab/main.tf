@@ -6,13 +6,13 @@ provider "aws" {
 
 # VPC
 resource "aws_vpc" "main" {
-	tags {
-		Name = "${var.tag_name}"
-	}
 	cidr_block = "${var.vpc_cidr}"
 	assign_generated_ipv6_cidr_block = true
 	enable_dns_support = true
 	enable_dns_hostnames = true
+	tags {
+		Name = "vpc${var.tag_name}"
+	}
 }
 
 # Management subnet
@@ -39,5 +39,13 @@ resource "aws_subnet" "int" {
 	cidr_block = "${var.int_cidr}"
 	tags {
 		Name = "snetInternal"
+	}
+}
+
+# Internet gateway
+resource "aws_internet_gateway" "gw" {
+	vpc_id = "${aws_vpc.main.id}"
+	tags {
+		Name = "igw${var.tag_name}"
 	}
 }
