@@ -6,11 +6,26 @@ variable "aws_region" {
 }
 
 variable "tag_name" {
-	description = "Name tag"
+	description = "VPC Name tag"
 	default = "vpcF5Labs"
 }
 
-variable "cidr_block" {
-	description = "IPv4 CIDR block"
+variable "vpc_cidr" {
+	description = "VPC IPv4 CIDR block"
 	default = "10.200.0.0/16"
+}
+
+variable "mgmt_cidr" {
+	description = "Management subnet IPv4 CIDR block"
+	default = "10.200.113.0/16"
+}
+
+variable "ext_cidr" {
+	description = "External subnet IPv4 CIDR block"
+	default = "10.200.115.0/16"
+}
+
+variable "int_cidr" {
+	description = "Internal subnet IPv4 CIDR block"
+	default = "10.200.112.0/16"
 }
