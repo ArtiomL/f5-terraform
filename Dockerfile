@@ -1,11 +1,11 @@
 # f5-terraform - Dockerfile
 # https://github.com/ArtiomL/f5-terraform
 # Artiom Lichtenstein
-# v1.0.0, 27/08/2018
+# v1.0.1, 27/08/2018
 
 FROM alpine
 
-LABEL maintainer="Artiom Lichtenstein" version="1.0.0"
+LABEL maintainer="Artiom Lichtenstein" version="1.0.1"
 
 # Core dependencies
 RUN apk add --update --no-cache coreutils git jq && \
@@ -21,7 +21,8 @@ RUN wget -O terraform.zip $(wget -qO- https://releases.hashicorp.com/index.json 
 
 # System account and permissions
 RUN adduser -u 1001 -D user
-RUN chown -RL user: /opt/terraform/
+COPY .aws /home/user/.aws
+RUN chown -RL user: /opt/terraform/ /home/user/.aws
 RUN chmod +x scripts/start.sh
 
 # UID to use when running the image and for CMD
