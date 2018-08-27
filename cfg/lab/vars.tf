@@ -17,15 +17,15 @@ variable "vpc_cidr" {
 
 variable "mgmt_cidr" {
 	description = "Management subnet IPv4 CIDR block"
-	default = "10.200.113.0/16"
+	default = "10.200.113.0/24"
 }
 
 variable "ext_cidr" {
 	description = "External subnet IPv4 CIDR block"
-	default = "10.200.115.0/16"
+	default = "10.200.115.0/24"
 }
 
 variable "int_cidr" {
 	description = "Internal subnet IPv4 CIDR block"
-	default = "10.200.112.0/16"
+	default = "10.200.112.0/24"
 }
