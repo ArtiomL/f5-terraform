@@ -29,3 +29,8 @@ variable "int_cidr" {
 	description = "Internal subnet IPv4 CIDR block"
 	default = "10.200.112.0/24"
 }
+
+variable "key_path" {
+	description = "SSH public key path"
+	default = "~/.ssh/id_rsa.pub"
+}
