@@ -1,8 +1,8 @@
 #!/bin/sh
-# f5-ansible - Docker Wrapper Script
-# https://github.com/ArtiomL/f5-ansible
+# f5-terraform - Docker Wrapper Script
+# https://github.com/ArtiomL/f5-terraform
 # Artiom Lichtenstein
-# v1.0.1, 04/02/2018
+# v1.0.0, 27/08/2018
 
 if [[ ! -z "$REPO" ]]; then
 	git clone "https://github.com/$REPO.git"
