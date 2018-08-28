@@ -32,5 +32,5 @@ variable "int_cidr" {
 
 variable "key_path" {
 	description = "SSH public key path"
-	default = "~/.ssh/id_rsa.pub"
+	default = "/home/user/.ssh/id_rsa.pub"
 }
