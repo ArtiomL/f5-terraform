@@ -34,3 +34,8 @@ variable "key_path" {
 	description = "SSH public key path"
 	default = "/home/user/.ssh/id_rsa.pub"
 }
+
+variable "mgmt_asrc" {
+	description = "Source IPv4 CIDR block allowed to access management"
+	default = "0.0.0.0/0"
+}
