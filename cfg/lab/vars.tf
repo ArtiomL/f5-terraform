@@ -36,6 +36,6 @@ variable "key_path" {
 }
 
 variable "mgmt_asrc" {
-	description = "Source IPv4 CIDR block allowed to access management"
-	default = "0.0.0.0/0"
+	description = "Source IPv4 CIDR block(s) allowed to access management"
+	default = ["0.0.0.0/0"]
 }
