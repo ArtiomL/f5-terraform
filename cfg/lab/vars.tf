@@ -39,3 +39,8 @@ variable "mgmt_asrc" {
 	description = "Source IPv4 CIDR block(s) allowed to access management"
 	default = ["0.0.0.0/0"]
 }
+
+variable "bigip_cft" {
+	description = "BIG-IP CloudFormation template"
+	default = "f5-existing-stack-byol-3nic-bigip.template"
+}
