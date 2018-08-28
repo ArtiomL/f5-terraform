@@ -13,7 +13,7 @@ resource "aws_cloudformation_stack" "bigip" {
 		sshKey = "${aws_key_pair.main.id}"
 		restrictedSrcAddress = "${var.mgmt_asrc[0]}"
 		restrictedSrcAddressApp = "0.0.0.0/0"
-		timezone = "UTC+3"
+		timezone = "Asia/Jerusalem"
 		allowUsageAnalytics = "No"
 	}
 	capabilities = ["CAPABILITY_IAM"]
