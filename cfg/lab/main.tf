@@ -74,6 +74,62 @@ resource "aws_route_table_association" "ext" {
 	route_table_id = "${aws_route_table.public.id}"
 }
 
+# Management security group
+resource "aws_security_group" "mgmt" {
+	name = "sgMgmt"
+	description = "Management SSH, HTTPS and ICMP access"
+	ingress {
+		protocol = "tcp"
+		from_port = 22
+		to_port = 22
+		cidr_blocks = "${var.mgmt_asrc}"
+	}
+	ingress {
+		protocol = "tcp"
+		from_port = 443
+		to_port = 443
+		cidr_blocks = "${var.mgmt_asrc}"
+	}
+	ingress {
+		protocol = "icmp"
+		from_port = -1
+		to_port = -1
+		cidr_blocks = "${var.mgmt_asrc}"
+	}
+	vpc_id="${aws_vpc.main.id}"
+	tags {
+		Name = "sgMgmt"
+	}
+}
+
+# External security group
+resource "aws_security_group" "ext" {
+	name = "sgExternal"
+	description = "External HTTP, HTTPS and ICMP access"
+	ingress {
+		protocol = "tcp"
+		from_port = 80
+		to_port = 80
+		cidr_blocks = ["0.0.0.0/0"]
+	}
+	ingress {
+		protocol = "tcp"
+		from_port = 443
+		to_port = 443
+		cidr_blocks = ["0.0.0.0/0"]
+	}
+	ingress {
+		protocol = "icmp"
+		from_port = -1
+		to_port = -1
+		cidr_blocks = ["0.0.0.0/0"]
+	}
+	vpc_id="${aws_vpc.main.id}"
+	tags {
+		Name = "sgExternal"
+	}
+}
+
 # EC2 key pair
 resource "aws_key_pair" "main" {
 	key_name = "kp${var.tag_name}"
