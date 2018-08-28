@@ -20,3 +20,11 @@ terraform apply \
 	-var 'tag_name=F5LabsUpdated' \
 	-var 'ext_cidr=10.200.117.0/24'
 ```
+
+
+```
+docker run -it \
+	-v /path/to/your/id_rsa.pub:/home/user/.ssh/id_rsa.pub \
+	-v /path/to/your/credentials:/home/user/.aws/credentials \
+	artioml/f5-terraform
+```
