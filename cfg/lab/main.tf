@@ -59,7 +59,7 @@ resource "aws_route_table" "public" {
 	}
 	tags {
 		Name = "rtPublic"
-  }
+	}
 }
 
 # Assign route table to management subnet
