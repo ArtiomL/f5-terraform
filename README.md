@@ -17,8 +17,14 @@
 
 ```
 terraform apply \
-	-var 'tag_name=F5LabsUpdated' \
-	-var 'ext_cidr=10.200.117.0/24'
+	-var 'aws_region=eu-central-1' \
+	-var 'tag_name=F5Labs' \
+	-var 'vpc_cidr=10.200.0.0/16' \
+	-var 'mgmt_cidr=10.200.113.0/24' \
+	-var 'ext_cidr=10.200.115.0/24' \
+	-var 'int_cidr=10.200.112.0/24' \
+	-var 'key_path=/home/user/.ssh/id_rsa.pub' \
+	-var 'mgmt_asrc=["0.0.0.0/0"]'
 ```
 
 
