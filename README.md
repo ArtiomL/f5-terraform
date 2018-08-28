@@ -12,3 +12,11 @@
 
 ## Table of Contents
 - [Description](#description)
+
+
+
+```
+terraform apply \
+	-var 'tag_name=F5LabsUpdated' \
+	-var 'ext_cidr=10.200.117.0/24'
+```
