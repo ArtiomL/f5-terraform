@@ -24,7 +24,9 @@ terraform apply \
 	-var 'ext_cidr=10.200.115.0/24' \
 	-var 'int_cidr=10.200.112.0/24' \
 	-var 'key_path=/home/user/.ssh/id_rsa.pub' \
-	-var 'mgmt_asrc=["0.0.0.0/0"]'
+	-var 'mgmt_asrc=["0.0.0.0/0"]' \
+	-var 'bigip_cft=f5-existing-stack-byol-3nic-bigip.template' \
+	-var 'bigip_lic1=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA'
 ```
 
 
