@@ -96,6 +96,12 @@ resource "aws_security_group" "mgmt" {
 		to_port = -1
 		cidr_blocks = "${var.mgmt_asrc}"
 	}
+	egress {
+		protocol = -1
+		from_port = 0
+		to_port = 0
+		cidr_blocks = ["0.0.0.0/0"]
+	}
 	vpc_id="${aws_vpc.main.id}"
 	tags {
 		Name = "sgMgmt"
@@ -123,6 +129,18 @@ resource "aws_security_group" "ext" {
 		from_port = -1
 		to_port = -1
 		cidr_blocks = ["0.0.0.0/0"]
+	}
+	egress {
+		protocol = -1
+		from_port = 0
+		to_port = 0
+		cidr_blocks = ["0.0.0.0/0"]
+	}
+	egress {
+		protocol = -1
+		from_port = 0
+		to_port = 0
+		ipv6_cidr_blocks = ["::/0"]
 	}
 	vpc_id="${aws_vpc.main.id}"
 	tags {
