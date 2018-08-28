@@ -18,6 +18,7 @@ resource "aws_vpc" "main" {
 # Management subnet
 resource "aws_subnet" "mgmt" {
 	vpc_id = "${aws_vpc.main.id}"
+	availability_zone = "${var.aws_region}a"
 	cidr_block = "${var.mgmt_cidr}"
 	tags {
 		Name = "snetMgmt"
@@ -27,6 +28,7 @@ resource "aws_subnet" "mgmt" {
 # External subnet
 resource "aws_subnet" "ext" {
 	vpc_id = "${aws_vpc.main.id}"
+	availability_zone = "${var.aws_region}a"
 	cidr_block = "${var.ext_cidr}"
 	tags {
 		Name = "snetExternal"
@@ -36,6 +38,7 @@ resource "aws_subnet" "ext" {
 # Internal subnet
 resource "aws_subnet" "int" {
 	vpc_id = "${aws_vpc.main.id}"
+	availability_zone = "${var.aws_region}a"
 	cidr_block = "${var.int_cidr}"
 	tags {
 		Name = "snetInternal"
