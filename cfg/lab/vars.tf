@@ -42,7 +42,7 @@ variable "mgmt_asrc" {
 
 variable "bigip_cft" {
 	description = "BIG-IP CloudFormation template"
-	default = "f5-existing-stack-byol-3nic-bigip.template"
+	default = "https://s3.amazonaws.com/f5-cft/f5-existing-stack-byol-3nic-bigip.template"
 }
 
 variable "bigip_lic1" {
