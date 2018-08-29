@@ -15,33 +15,63 @@ resource "aws_vpc" "main" {
 	}
 }
 
-# Management subnet
-resource "aws_subnet" "mgmt" {
+# Management subnet in AZ1
+resource "aws_subnet" "mgmt1" {
 	vpc_id = "${aws_vpc.main.id}"
 	availability_zone = "${var.aws_region}a"
-	cidr_block = "${var.mgmt_cidr}"
+	cidr_block = "${var.mgmt1_cidr}"
 	tags {
-		Name = "snetMgmt"
+		Name = "snetMgmt1"
 	}
 }
 
-# External subnet
-resource "aws_subnet" "ext" {
+# Management subnet in AZ2
+resource "aws_subnet" "mgmt2" {
 	vpc_id = "${aws_vpc.main.id}"
-	availability_zone = "${var.aws_region}a"
-	cidr_block = "${var.ext_cidr}"
+	availability_zone = "${var.aws_region}b"
+	cidr_block = "${var.mgmt2_cidr}"
 	tags {
-		Name = "snetExternal"
+		Name = "snetMgmt2"
 	}
 }
 
-# Internal subnet
-resource "aws_subnet" "int" {
+# External subnet in AZ1
+resource "aws_subnet" "ext1" {
 	vpc_id = "${aws_vpc.main.id}"
 	availability_zone = "${var.aws_region}a"
-	cidr_block = "${var.int_cidr}"
+	cidr_block = "${var.ext1_cidr}"
 	tags {
-		Name = "snetInternal"
+		Name = "snetExternal1"
+	}
+}
+
+# External subnet in AZ2
+resource "aws_subnet" "ext2" {
+	vpc_id = "${aws_vpc.main.id}"
+	availability_zone = "${var.aws_region}b"
+	cidr_block = "${var.ext2_cidr}"
+	tags {
+		Name = "snetExternal2"
+	}
+}
+
+# Internal subnet in AZ1
+resource "aws_subnet" "int1" {
+	vpc_id = "${aws_vpc.main.id}"
+	availability_zone = "${var.aws_region}a"
+	cidr_block = "${var.int1_cidr}"
+	tags {
+		Name = "snetInternal1"
+	}
+}
+
+# Internal subnet in AZ2
+resource "aws_subnet" "int2" {
+	vpc_id = "${aws_vpc.main.id}"
+	availability_zone = "${var.aws_region}b"
+	cidr_block = "${var.int2_cidr}"
+	tags {
+		Name = "snetInternal2"
 	}
 }
 
@@ -65,14 +95,26 @@ resource "aws_route_table" "public" {
 	}
 }
 
-# Assign route table to management subnet
-resource "aws_route_table_association" "mgmt" {
-	subnet_id = "${aws_subnet.mgmt.id}"
+# Assign route table to management subnet in AZ1
+resource "aws_route_table_association" "mgmt1" {
+	subnet_id = "${aws_subnet.mgmt1.id}"
 	route_table_id = "${aws_route_table.public.id}"
 }
 
-# Assign route table to external subnet
-resource "aws_route_table_association" "ext" {
-	subnet_id = "${aws_subnet.ext.id}"
+# Assign route table to management subnet in AZ2
+resource "aws_route_table_association" "mgmt2" {
+	subnet_id = "${aws_subnet.mgmt2.id}"
+	route_table_id = "${aws_route_table.public.id}"
+}
+
+# Assign route table to external subnet in AZ1
+resource "aws_route_table_association" "ext1" {
+	subnet_id = "${aws_subnet.ext1.id}"
+	route_table_id = "${aws_route_table.public.id}"
+}
+
+# Assign route table to external subnet in AZ2
+resource "aws_route_table_association" "ext2" {
+	subnet_id = "${aws_subnet.ext2.id}"
 	route_table_id = "${aws_route_table.public.id}"
 }
