@@ -14,7 +14,7 @@
 - [Description](#description)
 
 
-
+Lab (f5-existing-stack-byol-3nic-bigip):
 ```
 terraform apply \
 	-var 'aws_region=eu-central-1' \
@@ -25,9 +25,30 @@ terraform apply \
 	-var 'int_cidr=10.200.112.0/24' \
 	-var 'key_path=/home/user/.ssh/id_rsa.pub' \
 	-var 'mgmt_asrc=["0.0.0.0/0"]' \
-	-var 'bigip_cft=f5-existing-stack-byol-3nic-bigip.template' \
+	-var 'bigip_cft=https://s3.amazonaws.com/f5-cft/f5-existing-stack-byol-3nic-bigip.template' \
 	-var 'bigip_lic1=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA'
 ```
+
+Prod (f5-existing-stack-across-az-cluster-byol-3nic-bigip):
+```
+terraform apply \
+	-var 'aws_region=eu-central-1' \
+	-var 'tag_name=F5Labs' \
+	-var 'vpc_cidr=10.200.0.0/16' \
+	-var 'mgmt1_cidr=10.200.113.0/24' \
+	-var 'mgmt2_cidr=10.200.123.0/24' \
+	-var 'ext1_cidr=10.200.115.0/24' \
+	-var 'ext2_cidr=10.200.125.0/24' \
+	-var 'int1_cidr=10.200.112.0/24' \
+	-var 'int2_cidr=10.200.122.0/24' \
+	-var 'key_path=/home/user/.ssh/id_rsa.pub' \
+	-var 'mgmt_asrc=["0.0.0.0/0"]' \
+	-var 'bigip_cft=https://s3.amazonaws.com/f5-cft/f5-existing-stack-across-az-cluster-byol-3nic-bigip.template' \
+	-var 'bigip_lic1=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA' \
+	-var 'bigip_lic2=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA'
+```
+
+
 
 
 ```
