@@ -15,7 +15,7 @@
 
   
 
-`dev (f5-existing-stack-byol-3nic-bigip)`:
+### `dev (f5-existing-stack-byol-3nic-bigip)`
 ```
 terraform apply \
 	-var 'aws_region=eu-central-1' \
@@ -31,8 +31,7 @@ terraform apply \
 ```
 
   
-
-`prod (f5-existing-stack-across-az-cluster-byol-3nic-bigip)`:
+### `prod (f5-existing-stack-across-az-cluster-byol-3nic-bigip)`
 ```
 terraform apply \
 	-var 'aws_region=eu-central-1' \
