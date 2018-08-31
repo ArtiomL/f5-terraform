@@ -1,0 +1,33 @@
+# f5-terraform - CI Build
+# https://github.com/ArtiomL/f5-terraform
+# Artiom Lichtenstein
+# v1.0.0, 31/08/2018
+
+sudo: required
+
+env:
+  global:
+  - REPO="artioml/f5-terraform"
+  - secure: "nmGW3E2IY30vGXXoQiAzz3/5XA41SNu55YijofXiUYL5mOljJhhhBRE25vcLxnqBUjJSQWRzXcQlaotsTRIXZZ+crO/UJR98Bd5Sops1/CLJjlwE8q6X9BUShAutl8YNZoLxuj/TYFffvt/pF+Ih9ndLNPjmyyLyjpXEQ4Jcw1S5dQbV6rPG8PLBqYPhYuCCoT5azd02jzhL2AFeBctn+k4Z5OfxryiBolGjfLNmRK9SZvRJeVP0MAYH2wnKokQ155ln1x9kjqfYOQQ3mrrUwChopehTrUK4pxr0XCqHUdmme7zEL2WdWTxdowEfFPKgwoXvn4xJic6XhJMx1Y7fOdahhtLFdNbkyHkF0dmn31TxbtkxnvRyQCtBc2XfrxySBY1s91qIAV4LJldrAofT2/kE6r73qRTQn67UHrhMas9NmqWYZHDhIUepflttSh4UVfMlN4Dlr4EHvzKqXb9clZ23wDkkN/icWnIgyedgowE1YZbgBnJAl/wBT/h0uZXY9NShYtY+CcsDj5lu7nEcxxb0lamtM9hJQgtd5YhAI0EqxBoe3+pdzZtZVtAMeLhiX7hm+pWGY96zlqDPQL5kRus1EiSeB8hrZ9lDK0nhGO8SWdMx7nnXRVpQ73KyZhmSvddO3avQGIo/tc+kL4/7ctuB4jhq7XUQ4L4B61RfT/4="
+  - secure: "576RajfBnt2NWUvZo/R7gcoKV2T2NfDaJ5HQz5j4GHI9vf9aTr7l0wytRvG4rVzT5TqgfWvbnoaYLXYN6pdZat0bmPriYkNjaTqfzrZGFme+e9quE2RwqZyaJGWJ1kwEQIda6J4TaD86UKGrYeFm0/tPIj6YleZRO9fXV9iAOyEvnXv+nc1NOosB2++6f1Y3l7fi41xp7+77nsUNFFYiIOOikY9kctH93muQy8VPI5ZBuqm1bCU3RVxwvIG8Gt+NqmzFmkQXc3M79I7tpxJZsiTubFFpK7V3bEbWJwJdSjtFQ5hr4jCQbos7/reHNJwJCoD2DI2Xino78yeYkbS9Ubc6+z2qc7zYtIKQeWx0QF5mNSDxE2XswqgCJAC7bkO0dfWpEnze0MuwfV1X9gaB4Y6A+O5dQog5VHp+X9Nh0x1BKRZqHBicSevqHO4WGR102Czgv80a7diUYRXIvkk+o9iV8V9Xi2SKz84CfFLWfORkVuYenLALXWtwnhmPppQuRMNaXwEdve6vUH476HSp1VxL9APCE+fVtUEt0ZtxYHjKj/kzcaEWyfPjc3nyvcDwsVDW9+zzmugRRYJb0Qwy6LiGkAenG/T/ZuHP8qQayU/WkHwrr1scMTkfH9HOSmgFhCYrh3ZHSTveS1FhkU0P1uOkTRPV5izp1N8PMyEMoaQ="
+
+services:
+  - docker
+
+before_script:
+  - chmod +x test/run.sh
+
+script:
+  - docker build -t $REPO .
+  - test/run.sh
+
+after_success:
+  - docker images
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u $DOCKER_USER -p $DOCKER_PASS;
+    docker push $REPO;
+    fi
+
+notifications:
+  slack:
+    secure: "75/OWYDs2NtBYGQD6AXYDBdgtqSRA3UJKu6j8pGl427r9vr8e7JDZkwv2jD3VrDGOUcQsPnVH+Qq3vegKn4+0WYcxl8mxqjGAdRnsIIz+3hAGjiS5hpe8Cv8MwYV+V+xMa9HgKsTrM/lRHIY1cvrUDwp5Z/2opLdWruC3egrmsdixGni6pwDoslAsAfZBlE6SIoL2a1lF7Mx0TTyF8w60GJs5tcqsVoOodeFogp5hgilNmxGNNb3IgebkmD2laH0TF7OrPWrOKZmmLvB6FqudS8p6si23Xmjz8/xQDNmlYc0uk5dhuxMqzuk/GCkpLdLLbbUvePOb6Y3ym70TmA+LDPLUfY6fup8ysDdC6XOorCEDEUncHzEKTUWDDvggJ+x/Q+XNvW+SS6IB5J43a4xxk2NwNdW+84u2kg+V4/b/YXuqsbOERZXrSGhs2X8N5yr5BHM2ToF0DKMnbYlMqQEKmHgBkHAebBT2d2le2AifaguNILvs62fc4f/4SJ9yxnrTplBZvRIS1azM8jmrE2aDD1Cc4SlASw5Teug+KyFad2xONRvahwxhUej39gKWrpOMKJBtQJ/K6cs/4b9sNUagsBJ8uW1ddujyoO/fjVPIxF/Q6zT5JF6xVhoapSj9gVW1Zq6GiqxG+x72iHi8OAK2Z98qEOCEAXmzTNQRyj0qsY="
