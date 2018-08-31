@@ -8,8 +8,6 @@ sudo: required
 env:
   global:
   - REPO="artioml/f5-terraform"
-  - secure: "nmGW3E2IY30vGXXoQiAzz3/5XA41SNu55YijofXiUYL5mOljJhhhBRE25vcLxnqBUjJSQWRzXcQlaotsTRIXZZ+crO/UJR98Bd5Sops1/CLJjlwE8q6X9BUShAutl8YNZoLxuj/TYFffvt/pF+Ih9ndLNPjmyyLyjpXEQ4Jcw1S5dQbV6rPG8PLBqYPhYuCCoT5azd02jzhL2AFeBctn+k4Z5OfxryiBolGjfLNmRK9SZvRJeVP0MAYH2wnKokQ155ln1x9kjqfYOQQ3mrrUwChopehTrUK4pxr0XCqHUdmme7zEL2WdWTxdowEfFPKgwoXvn4xJic6XhJMx1Y7fOdahhtLFdNbkyHkF0dmn31TxbtkxnvRyQCtBc2XfrxySBY1s91qIAV4LJldrAofT2/kE6r73qRTQn67UHrhMas9NmqWYZHDhIUepflttSh4UVfMlN4Dlr4EHvzKqXb9clZ23wDkkN/icWnIgyedgowE1YZbgBnJAl/wBT/h0uZXY9NShYtY+CcsDj5lu7nEcxxb0lamtM9hJQgtd5YhAI0EqxBoe3+pdzZtZVtAMeLhiX7hm+pWGY96zlqDPQL5kRus1EiSeB8hrZ9lDK0nhGO8SWdMx7nnXRVpQ73KyZhmSvddO3avQGIo/tc+kL4/7ctuB4jhq7XUQ4L4B61RfT/4="
-  - secure: "xd2+MXVPUriDq8Dmsi4krkW9OtIxw7LWm80M3+FOPdU3durd5kARIsDNgmU2Y/ShK7PE9BwPSF5qXlfYvGOLKPJadCPAF4RlHoiCAgg7/U61P+FulL+Zl0XjswIcPpL/kP1E5GWFS51rqmt/dXWpnrZAhPnEtwdJPQH/EWBy2RgjBp7+lOhduqurllvbViffY2LM/lam8ONKVoHDkVv5M3CnhZIq/xcNM0DAsSYuYSO9kAbIvDwOfsDz9nN4CdPrA/Unw/BE1PZAuW1YoP4BkmNfaoLDmoJBUK3L3tPtZXzIuq4Z9V4fQC7o/havzrT5fczK16t+G3WUWGVkVQ9M8vJsOGvD6IUSHMNHXw4oCNvCqeWYfZgX8EkChJs0WRUL6RLvDu91Sr6vg9+Tg/y0iPkal870phlrsqaXuH32GJsdYuEdmDPDy1rI+eaZfL/ZD8QWcNvJhHwOhF6hcop0gQEU/eGQ4OEdAcg6o072HlW304Bde+kZu7vj7ae9VlzUP1h5ZBLUXeGakM2XCYODiypAyYUNeUdualmUVN+1szoi/rtAim6jXo+oDkK+qfwVvRQotJnLrdXqBr435xLnkXJaVDJ76q8MurFs68a0fsxXLTcXjnslrFlhaifkNf2o1EagMBpabffXiFarpNFqMUZL2SXsjFN5YgsOz0pmWpo="
 
 services:
   - docker
@@ -24,8 +22,6 @@ script:
 after_success:
   - docker images
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u $DOCKER_USER -p $DOCKER_PASS;
-    docker push $REPO;
     fi
 
 notifications:
