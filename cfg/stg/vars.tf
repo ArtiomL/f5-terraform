@@ -42,10 +42,15 @@ variable "mgmt_asrc" {
 
 variable "bigip_cft" {
 	description = "BIG-IP CloudFormation template"
-	default = "https://s3.amazonaws.com/f5-cft/f5-existing-stack-byol-3nic-bigip.template"
+	default = "https://s3.amazonaws.com/f5-cft/f5-existing-stack-same-az-cluster-byol-3nic-bigip.template"
 }
 
 variable "bigip_lic1" {
-	description = "BIG-IP Registration Key"
+	description = "BIG-IP1 Registration Key"
+	default = "ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA"
+}
+
+variable "bigip_lic2" {
+	description = "BIG-IP2 Registration Key"
 	default = "ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA"
 }
