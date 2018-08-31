@@ -19,11 +19,12 @@ resource "aws_instance" "adct" {
 	key_name = "${aws_key_pair.main.id}"
 	subnet_id = "${aws_subnet.int.id}"
 	vpc_security_group_ids = ["${aws_security_group.int.id}"]
-	associate_public_ip_address = true
+	associate_public_ip_address = false
 	source_dest_check = false
 	user_data = "${file("install.sh")}"
 	tags {
 		Name = "inADCT${count.index}"
+		f5sd = "pool_ADCT"
 	}
 	count = 3
 }
