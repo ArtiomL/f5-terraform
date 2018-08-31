@@ -1,4 +1,4 @@
-# f5-existing-stack-byol-3nic-bigip
+# f5-existing-stack-same-az-cluster-byol-3nic-bigip
 resource "aws_cloudformation_stack" "bigip" {
 	name = "cf${var.tag_name}"
 	template_url = "${var.bigip_cft}"
@@ -10,6 +10,7 @@ resource "aws_cloudformation_stack" "bigip" {
 		imageName = "AllTwoBootLocations"
 		instanceType = "m5.xlarge"
 		licenseKey1 = "${var.bigip_lic1}"
+		licenseKey2 = "${var.bigip_lic2}"
 		sshKey = "${aws_key_pair.main.id}"
 		restrictedSrcAddress = "${var.mgmt_asrc[0]}"
 		restrictedSrcAddressApp = "0.0.0.0/0"
