@@ -43,3 +43,9 @@ resource "aws_security_group" "int" {
 		Name = "sgInternal"
 	}
 }
+
+# Assign route table to internal subnet
+resource "aws_route_table_association" "int" {
+	subnet_id = "${aws_subnet.int.id}"
+	route_table_id = "${aws_route_table.public.id}"
+}
