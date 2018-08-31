@@ -32,6 +32,24 @@ terraform apply \
 
 &nbsp;&nbsp;
 
+#### `stg (f5-existing-stack-same-az-cluster-byol-3nic-bigip)`
+```
+terraform apply \
+	-var 'aws_region=eu-central-1' \
+	-var 'tag_name=F5Labs' \
+	-var 'vpc_cidr=10.200.0.0/16' \
+	-var 'mgmt_cidr=10.200.113.0/24' \
+	-var 'ext_cidr=10.200.115.0/24' \
+	-var 'int_cidr=10.200.112.0/24' \
+	-var 'key_path=/home/user/.ssh/id_rsa.pub' \
+	-var 'mgmt_asrc=["0.0.0.0/0"]' \
+	-var 'bigip_cft=https://s3.amazonaws.com/f5-cft/f5-existing-stack-same-az-cluster-byol-3nic-bigip.template' \
+	-var 'bigip_lic1=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA' \
+	-var 'bigip_lic2=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA'
+```
+
+&nbsp;&nbsp;
+
 #### `prod (f5-existing-stack-across-az-cluster-byol-3nic-bigip)`
 ```
 terraform apply \
@@ -51,8 +69,7 @@ terraform apply \
 	-var 'bigip_lic2=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA'
 ```
 
-
-
+&nbsp;&nbsp;
 
 ```
 docker run -it \
