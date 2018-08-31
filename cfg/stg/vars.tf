@@ -7,7 +7,7 @@ variable "aws_region" {
 
 variable "tag_name" {
 	description = "VPC Name tag"
-	default = "F5Labs"
+	default = "F5LabsSTG"
 }
 
 variable "vpc_cidr" {
