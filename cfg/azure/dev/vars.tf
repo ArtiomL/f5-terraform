@@ -47,7 +47,7 @@ variable "bigip_armt" {
 
 variable "bigip_user" {
 	description = "BIG-IP username"
-	default = "user"
+	default = "batman"
 }
 
 variable "bigip_lic1" {
