@@ -22,6 +22,7 @@ RUN wget -O terraform.zip $(wget -qO- https://releases.hashicorp.com/index.json 
 # System account and permissions
 RUN adduser -u 1001 -D user
 COPY .aws /home/user/.aws
+COPY .azure /home/user/.azure
 RUN chown -RL user: /opt/terraform/ /home/user/.aws
 RUN chmod +x scripts/start.sh
 
