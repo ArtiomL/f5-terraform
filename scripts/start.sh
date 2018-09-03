@@ -9,4 +9,6 @@ if [[ ! -z "$REPO" ]]; then
 	cd $(echo "$REPO" | cut -d"/" -f2)
 fi
 
+export $(cat /home/user/.azure/credentials | tr '\n' ' ')
+
 exec /bin/sh
