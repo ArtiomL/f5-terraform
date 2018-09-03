@@ -2,7 +2,7 @@
 resource "azurerm_template_deployment" "bigip" {
 	name = "atd${var.tag_name}"
 	resource_group_name = "${azurerm_resource_group.main.name}"
-	template_body = "${data.http.armt.body}"
+	template_body = "${replace(data.http.armt.body, "### START (INPUT) CUSTOM CONFIGURATION HERE\\n", "curl -sL https://f5labs.one/as3 | bash")}"
 	parameters {
 		adminUsername = "${var.bigip_user}"
 		authenticationType = "sshPublicKey"
@@ -25,7 +25,6 @@ resource "azurerm_template_deployment" "bigip" {
 		timeZone = "Asia/Jerusalem"
 		restrictedSrcAddress = "${var.mgmt_asrc[0]}"
 		allowUsageAnalytics = "No"
-		customConfig = "curl -sL https://f5labs.one/as3 | bash"
 	}
 	deployment_mode = "Incremental"
 }
