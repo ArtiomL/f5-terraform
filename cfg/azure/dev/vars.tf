@@ -45,6 +45,11 @@ variable "bigip_armt" {
 	default = "https://raw.githubusercontent.com/F5Networks/f5-azure-arm-templates/master/supported/standalone/3nic/existing-stack/byol/azuredeploy.json"
 }
 
+variable "bigip_user" {
+	description = "BIG-IP username"
+	default = "user"
+}
+
 variable "bigip_lic1" {
 	description = "BIG-IP Registration Key"
 	default = "ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA"
