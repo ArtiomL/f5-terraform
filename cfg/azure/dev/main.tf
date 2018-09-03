@@ -16,16 +16,28 @@ resource "azurerm_virtual_network" "main" {
 	address_space = "${var.vnet_cidr}"
 	location = "${azurerm_resource_group.main.location}"
 	resource_group_name = "${azurerm_resource_group.main.name}"
-	subnet {
-		name = "snetMgmt"
-		address_prefix = "${var.mgmt_cidr}"
-	}
-	subnet {
-		name = "snetExternal"
-		address_prefix = "${var.ext_cidr}"
-	}
-	subnet {
-		name = "snetInternal"
-		address_prefix = "${var.int_cidr}"
-	}
+}
+
+# Management subnet
+resource "azurerm_subnet" "mgmt" {
+	name = "snetMgmt"
+	resource_group_name = "${azurerm_resource_group.main.name}"
+	virtual_network_name = "${azurerm_virtual_network.main.name}"
+	address_prefix = "${var.mgmt_cidr}"
+}
+
+# External subnet
+resource "azurerm_subnet" "ext" {
+	name = "snetExternal"
+	resource_group_name = "${azurerm_resource_group.main.name}"
+	virtual_network_name = "${azurerm_virtual_network.main.name}"
+	address_prefix = "${var.ext_cidr}"
+}
+
+# Internal subnet
+resource "azurerm_subnet" "int" {
+	name = "snetInternal"
+	resource_group_name = "${azurerm_resource_group.main.name}"
+	virtual_network_name = "${azurerm_virtual_network.main.name}"
+	address_prefix = "${var.int_cidr}"
 }
