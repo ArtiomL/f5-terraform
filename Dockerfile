@@ -1,7 +1,7 @@
 # f5-terraform - Dockerfile
 # https://github.com/ArtiomL/f5-terraform
 # Artiom Lichtenstein
-# v1.0.1, 27/08/2018
+# v1.0.2, 03/09/2018
 
 FROM alpine
 
