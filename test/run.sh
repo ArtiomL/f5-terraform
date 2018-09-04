@@ -10,7 +10,7 @@ REPO="artioml/f5-terraform"
 
 # Terraform
 str_TEST="terraform --version;"
-str_TEST="$str_TEST find cfg/ -type d | while read dir; terraform init $dir; done"
+str_TEST="$str_TEST find cfg/ -type d | while read dir; do terraform init $dir; done"
 
 if [ "$TRAVIS" == "true" ]; then
 	docker run $REPO /bin/sh -c "$str_TEST"
