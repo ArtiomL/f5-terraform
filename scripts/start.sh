@@ -15,5 +15,6 @@ export $(cat /home/user/.azure/credentials | tr '\n' ' ')
 
 # GCP environment variables
 export GOOGLE_APPLICATION_CREDENTIALS=/home/user/.gcp/credentials
+export GOOGLE_PROJECT=$(jq -r .project_id /home/user/.gcp/credentials)
 
 exec /bin/sh
