@@ -52,7 +52,7 @@ variable "bigip_user" {
 
 variable "bigip_pass" {
 	description = "BIG-IP password"
-	default = "D@rk-Kn1ght!"
+	default = "D@rk-Kn!ght1"
 }
 
 variable "bigip_lic1" {
