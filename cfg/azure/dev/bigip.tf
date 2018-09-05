@@ -2,7 +2,7 @@
 resource "azurerm_template_deployment" "bigip" {
 	name = "atd${var.tag_name}"
 	resource_group_name = "${azurerm_resource_group.main.name}"
-	template_body = "${replace(data.http.armt.body, "### START (INPUT) CUSTOM CONFIGURATION HERE\\n", "curl -sL https://f5labs.one/as3 | bash")}"
+	template_body = "${replace(data.http.armt.body, "### START (INPUT) CUSTOM CONFIGURATION HERE\\n", "curl -sL https://f5labs.one/as3 | bash; tmsh modify /auth user ${var.bigip_user} password ${var.bigip_pass}")}"
 	parameters {
 		adminUsername = "${var.bigip_user}"
 		authenticationType = "sshPublicKey"

@@ -50,6 +50,11 @@ variable "bigip_user" {
 	default = "batman"
 }
 
+variable "bigip_pass" {
+	description = "BIG-IP password"
+	default = "D@rk-Kn!ght1"
+}
+
 variable "bigip_lic1" {
 	description = "BIG-IP Registration Key"
 	default = "ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA"
