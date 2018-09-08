@@ -1,4 +1,4 @@
-# f5-existing-stack-byol-3nic-bigip
+# f5-supported-standalone-3nic-existing-stack-byol
 resource "aws_cloudformation_stack" "bigip" {
 	name = "cf${var.tag_name}"
 	template_url = "${var.bigip_cft}"
