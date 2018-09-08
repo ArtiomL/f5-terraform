@@ -7,7 +7,7 @@ variable "azure_region" {
 
 variable "tag_name" {
 	description = "Name tag"
-	default = "F5LabsDEV"
+	default = "F5LabsSTG"
 }
 
 variable "vnet_cidr" {
