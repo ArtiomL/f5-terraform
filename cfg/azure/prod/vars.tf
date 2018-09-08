@@ -42,7 +42,7 @@ variable "mgmt_asrc" {
 
 variable "bigip_armt" {
 	description = "BIG-IP Azure Resource Manager template"
-	default = "https://raw.githubusercontent.com/F5Networks/f5-azure-arm-templates/master/supported/standalone/3nic/existing-stack/byol/azuredeploy.json"
+	default = "https://raw.githubusercontent.com/F5Networks/f5-azure-arm-templates/master/supported/failover/same-net/via-api/n-nic/existing-stack/byol/azuredeploy.json"
 }
 
 variable "bigip_user" {
@@ -56,6 +56,11 @@ variable "bigip_pass" {
 }
 
 variable "bigip_lic1" {
-	description = "BIG-IP Registration Key"
+	description = "BIG-IP1 Registration Key"
+	default = "ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA"
+}
+
+variable "bigip_lic2" {
+	description = "BIG-IP2 Registration Key"
 	default = "ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA"
 }
