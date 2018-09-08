@@ -1,4 +1,4 @@
-# f5-existing-stack-byol-3nic-bigip
+# https://github.com/F5Networks/f5-azure-arm-templates/tree/master/supported/standalone/3nic/existing-stack/byol/
 resource "azurerm_template_deployment" "bigip" {
 	name = "atd${var.tag_name}"
 	resource_group_name = "${azurerm_resource_group.main.name}"
