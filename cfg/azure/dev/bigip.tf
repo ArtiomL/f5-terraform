@@ -7,7 +7,7 @@ resource "azurerm_template_deployment" "bigip" {
 		adminUsername = "${var.bigip_user}"
 		authenticationType = "sshPublicKey"
 		adminPasswordOrKey = "${file(var.key_path)}"
-		dnsLabel = "big-ip-a"
+		dnsLabel = "${var.tag_name}"
 		instanceName = "vmBIP-A"
 		instanceType = "Standard_DS3_v2"
 		imageName = "AllTwoBootLocations"
