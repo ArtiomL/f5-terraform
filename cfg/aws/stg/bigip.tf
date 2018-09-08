@@ -1,4 +1,4 @@
-# f5-existing-stack-same-az-cluster-byol-3nic-bigip
+# https://github.com/F5Networks/f5-aws-cloudformation/tree/master/supported/failover/same-net/via-api/3nic/existing-stack/byol/
 resource "aws_cloudformation_stack" "bigip" {
 	name = "cf${var.tag_name}"
 	template_url = "${var.bigip_cft}"
