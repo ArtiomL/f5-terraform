@@ -1,4 +1,4 @@
-# https://github.com/F5Networks/f5-azure-arm-templates/tree/master/supported/standalone/3nic/existing-stack/byol/
+# https://github.com/F5Networks/f5-azure-arm-templates/tree/master/supported/failover/same-net/via-api/n-nic/existing-stack/byol/
 resource "azurerm_template_deployment" "bigip" {
 	name = "atd${var.tag_name}"
 	resource_group_name = "${azurerm_resource_group.main.name}"
@@ -13,15 +13,20 @@ resource "azurerm_template_deployment" "bigip" {
 		imageName = "AllTwoBootLocations"
 		bigIpVersion = "latest"
 		licenseKey1 = "${var.bigip_lic1}"
+		licenseKey2 = "${var.bigip_lic2}"
 		#numberOfExternalIps = 1
 		vnetName = "${azurerm_virtual_network.main.name}"
 		vnetResourceGroupName = "${azurerm_resource_group.main.name}"
 		mgmtSubnetName = "${azurerm_subnet.mgmt.name}"
-		mgmtIpAddress = "${replace(var.mgmt_cidr, "0/24", "245")}"
+		mgmtIpAddressRangeStart = "${replace(var.mgmt_cidr, "0/24", "245")}"
 		externalSubnetName = "${azurerm_subnet.ext.name}"
+		externalIpSelfAddressRangeStart = "${replace(var.ext_cidr, "0/24", "245")}"
 		externalIpAddressRangeStart = "${replace(var.ext_cidr, "0/24", "10")}"
 		internalSubnetName = "${azurerm_subnet.int.name}"
-		internalIpAddress = "${replace(var.int_cidr, "0/24", "245")}"
+		internalIpAddressRangeStart = "${replace(var.int_cidr, "0/24", "245")}"
+		tenantId = "${var.arm_tenant_id}"
+		clientId = "${var.arm_client_id}"
+		servicePrincipalSecret = "${var.arm_client_secret}"
 		timeZone = "Asia/Jerusalem"
 		restrictedSrcAddress = "${var.mgmt_asrc[0]}"
 		allowUsageAnalytics = "No"
@@ -35,3 +40,8 @@ data "http" "armt" {
 		"Accept" = "application/json"
 	}
 }
+
+# Set via TF_VAR_ environment variables
+variable "arm_tenant_id" {}
+variable "arm_client_id" {}
+variable "arm_client_secret" {}
