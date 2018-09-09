@@ -10,6 +10,7 @@ REPO="artioml/f5-terraform"
 
 # Terraform
 str_TEST="terraform --version;"
+str_TEST="$str_TEST cp -n cfg/aws/dev/* cfg/aws/adct/;"
 str_TEST="$str_TEST find cfg/*/* -type d -print0 | xargs -0 -n1 -t terraform init"
 
 if [ "$TRAVIS" == "true" ]; then
