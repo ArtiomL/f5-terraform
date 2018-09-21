@@ -40,8 +40,8 @@ variable "tags_shared" {
 	type = "map"
 	default = {
 		Owner = "T.Durden"
-		Business-Unit = "R&D"
-		Cost-Center = "7741"
+		BusinessUnit = "R&D"
+		CostCenter = "7741"
 		Project = "Mayhem"
 	}
 }
