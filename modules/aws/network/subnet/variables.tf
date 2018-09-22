@@ -23,6 +23,7 @@ variable "rt_associate" {
 
 variable "route_table_id" {
 	description = "ID of the routing table to associate with"
+	default = ""
 }
 
 variable "tag_name" {
