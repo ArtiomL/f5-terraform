@@ -16,6 +16,15 @@ variable "cidr_blocks" {
 	default = ["10.200.113.0/24", "10.200.123.0/24"]
 }
 
+variable "rt_associate" {
+	description = "Associate with a routing table"
+	default = "true"
+}
+
+variable "route_table_id" {
+	description = "ID of the routing table to associate with"
+}
+
 variable "tag_name" {
 	description = "Subnet Name tag"
 	default = "Mgmt"
