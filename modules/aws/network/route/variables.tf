@@ -4,7 +4,7 @@ variable "vpc_id" {
 	description = "VPC ID"
 }
 
-variable "gateway_id" {
+variable "igw_id" {
 	description = "Internet Gateway ID"
 }
 
