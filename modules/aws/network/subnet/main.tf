@@ -16,3 +16,9 @@ resource "aws_subnet" "main" {
 		"Name", "snet${var.tag_name}${count.index + 1}${var.tag_environment}"
 	))}"
 }
+
+resource "aws_route_table_association" "main" {
+	count = "${var.rt_associate ? length(var.az_names) : 0}"
+	subnet_id = "${element(aws_subnet.main.*.id, count.index)}"
+	route_table_id = "${var.route_table_id}"
+}
