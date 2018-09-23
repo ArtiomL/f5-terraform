@@ -20,39 +20,35 @@ variable "tag_environment" {
   default     = "DEV"
 }
 
-variable "tag_owner" {
-  description = "VPC Owner tag"
-  default     = "T.Durden"
+variable "tags_shared" {
+  description = "Other tags assigned to all resources"
+  type        = "map"
+  default = {
+    Owner        = "T.Durden"
+    BusinessUnit = "R&D"
+    CostCenter   = "7741"
+    Project      = "Mayhem"
+  }
 }
 
-variable "tag_bu" {
-  description = "VPC Business-Unit tag"
-  default     = "RTD"
+variable "az_names" {
+  description = "Subnet Availability Zone list"
+  default     = ["eu-central-1a"]
 }
 
-variable "tag_costcenter" {
-  description = "VPC Cost-Center tag"
-  default     = "7741"
+variable "mgmt_cidrs" {
+  description = "Management subnet IPv4 CIDR blocks"
+  default     = ["10.200.113.0/24"]
 }
 
-variable "tag_project" {
-  description = "VPC Project tag"
-  default     = "Mayhem"
+variable "ext_cidrs" {
+  description = "External subnet IPv4 CIDR blocks"
+  default     = ["10.200.115.0/24"]
 }
 
-variable "mgmt_cidr" {
-  description = "Management subnet IPv4 CIDR block"
-  default     = "10.200.113.0/24"
-}
-
-variable "ext_cidr" {
-  description = "External subnet IPv4 CIDR block"
-  default     = "10.200.115.0/24"
-}
-
-variable "int_cidr" {
-  description = "Internal subnet IPv4 CIDR block"
-  default     = "10.200.112.0/24"
+variable "int_cidrs" {
+  description = "Internal subnet IPv4 CIDR blocks"
+  default     = ["10.200.112.0/24"]
 }
 
 variable "key_path" {
@@ -71,6 +67,6 @@ variable "bigip_cft" {
 }
 
 variable "bigip_lic1" {
-  description = "BIG-IP Registration Key"
+  description = "BIG-IP registration key"
   default     = "ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA"
 }
