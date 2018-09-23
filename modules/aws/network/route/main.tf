@@ -9,7 +9,7 @@ locals {
 
 resource "aws_route_table" "main" {
   vpc_id = "${var.vpc_id}"
-  tags   = "${merge(local.tags, var.tags_shared, map(
+  tags = "${merge(local.tags, var.tags_shared, map(
     "Name", "rt${var.tag_name}${var.tag_environment}"
   ))}"
 }
