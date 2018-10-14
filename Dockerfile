@@ -8,7 +8,7 @@ FROM alpine
 LABEL maintainer="Artiom Lichtenstein" version="1.0.3"
 
 # Core dependencies
-RUN apk add --update --no-cache coreutils git jq && \
+RUN apk add --update --no-cache coreutils curl git jq && \
 	rm -rf /var/cache/apk/*
 
 # Terraform
