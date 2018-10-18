@@ -14,7 +14,7 @@ str_TEST="terraform --version; \
 	find cfg/ env/ modules/ -type d -print0 | xargs -0 -n1 -t terraform init"
 
 if [ "$TRAVIS" == "true" ]; then
-	docker run $REPO /bin/sh -c "$str_TEST"
+	docker run $REPO /bin/sh -c "set -xeo pipefail; $str_TEST"
 else
 	eval "$str_TEST"
 fi
