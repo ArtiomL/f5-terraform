@@ -42,12 +42,12 @@ docker run -it artioml/f5-terraform
 &nbsp;&nbsp;
 
 ## Extensibility
-The container will dynamically pull down (and `cd` to) whatever GitHub repository is specified in the `REPO` environment variable. This enables Continuous Delivery of new content every time the container is started and that repository is updated. It also allows you to load and run your own custom Terraform environments.
+The container will dynamically pull down (and `cd` to) whatever GitHub repository is specified in the `REPO` environment variable. This enables Continuous Delivery of new content every time the container is started and that repository is updated. It also allows you to load and run your own custom Ansible environments.
 
 ```shell
 -e "REPO=<GitHub_Username>/<Repo_Name>"
 ```
-For [example](https://github.com/jmcalalang/Ansible_Meetups):
+For [example](https://github.com/ArtiomL/terraform-do):
 ```shell
 docker run -it -e "REPO=artioml/terraform-do" artioml/f5-terraform
 ```
