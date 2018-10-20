@@ -37,7 +37,13 @@ docker run -it artioml/f5-terraform
 ```
 
 ### Credentials
+The home directory used when running the image (`/home/user/`) has the following [structure](.creds).
+Each subdirectory contains the relevant access keys / tokens for the corresponding public cloud.
+Either edit the `credentials` files for your environment, or mount a local directory with the same path structure:
 
+```
+docker run -it -v /Users/tdurden/:/home/user/ artioml/f5-terraform
+```
 
 &nbsp;&nbsp;
 
