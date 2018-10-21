@@ -20,6 +20,7 @@ variable "tag_environment" {
 variable "tags_shared" {
   description = "Other tags assigned to all resources"
   type        = "map"
+
   default = {
     Owner        = "T.Durden"
     BusinessUnit = "R&D"
