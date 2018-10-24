@@ -27,6 +27,7 @@ resource "aws_route_table_association" "main" {
 resource "aws_security_group" "main" {
   name        = "sg${var.tag_name}${var.tag_environment}"
   description = "${var.tag_name} security group"
+  vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(local.tags, var.tags_shared, map(
     "Name", "sg${var.tag_name}${var.tag_environment}"
