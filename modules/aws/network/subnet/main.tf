@@ -23,3 +23,12 @@ resource "aws_route_table_association" "main" {
   subnet_id      = "${element(aws_subnet.main.*.id, count.index)}"
   route_table_id = "${var.route_table_id}"
 }
+
+resource "aws_security_group" "main" {
+  name        = "sg${var.tag_name}${var.tag_environment}"
+  description = "${var.tag_name} security group"
+
+  tags = "${merge(local.tags, var.tags_shared, map(
+    "Name", "sg${var.tag_name}${var.tag_environment}"
+ ))}"
+}
