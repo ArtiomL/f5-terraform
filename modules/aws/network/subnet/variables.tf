@@ -16,6 +16,11 @@ variable "cidr_blocks" {
   default     = ["10.200.113.0/24", "10.200.123.0/24"]
 }
 
+variable "map_public_ip" {
+  description = "Instances launched into this subnet should be assigned a public IP address"
+  default     = "true"
+}
+
 variable "rt_associate" {
   description = "Associate with a routing table"
   default     = "true"
