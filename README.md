@@ -31,7 +31,7 @@ Multi-cloud Infrastructure as Code with declarative modules and configuration fi
 
 ### Run
 ```shell
-# Terraform v0.11.9
+# Terraform v0.11.10
 docker run -it artioml/f5-terraform
 
 ```
