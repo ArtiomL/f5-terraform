@@ -53,6 +53,7 @@ module "subnet_int" {
   vpc_id          = "${module.vpc.id}"
   az_names        = "${var.az_names}"
   cidr_blocks     = "${var.int_cidrs}"
+  map_public_ip   = "false"
   rt_associate    = "false"
   tag_name        = "Internal"
   tag_environment = "${var.tag_environment}"

@@ -4,9 +4,9 @@ provider "aws" {
   region = "${var.aws_region}"
 }
 
-# AWS network
-module "aws_network" {
-  source          = "github.com/ArtiomL/f5-terraform/modules/aws/network"
+# VPC
+module "aws_vpc" {
+  source          = "github.com/ArtiomL/f5-terraform/modules/aws/vpc"
   aws_region      = "${var.aws_region}"
   vpc_cidr        = "${var.vpc_cidr}"
   az_names        = "${var.az_names}"

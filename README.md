@@ -12,68 +12,52 @@
 
 ## Table of Contents
 - [Description](#description)
+- [Installation](#installation)
+	- [Run](#run)
+	- [Credentials](#credentials)
+- [Extensibility](#extensibility)
+- [Modules](#modules)
+- [License](LICENSE)
 
-  
+&nbsp;&nbsp;
 
-#### `dev (f5-existing-stack-byol-3nic-bigip)`
+## Description
+
+Multi-cloud Infrastructure as Code with declarative modules and configuration files.
+
+&nbsp;&nbsp;
+
+## Installation
+
+### Run
+```shell
+# Terraform v0.11.10
+docker run -it artioml/f5-terraform
+
 ```
-terraform apply \
-	-var 'aws_region=eu-central-1' \
-	-var 'tag_name=F5Labs' \
-	-var 'vpc_cidr=10.200.0.0/16' \
-	-var 'mgmt_cidr=10.200.113.0/24' \
-	-var 'ext_cidr=10.200.115.0/24' \
-	-var 'int_cidr=10.200.112.0/24' \
-	-var 'key_path=/home/user/.ssh/id_rsa.pub' \
-	-var 'mgmt_asrc=["0.0.0.0/0"]' \
-	-var 'bigip_cft=https://s3.amazonaws.com/f5-cft/f5-existing-stack-byol-3nic-bigip.template' \
-	-var 'bigip_lic1=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA'
+
+### Credentials
+The home directory used when running the image (`/home/user/`) has the following [structure](.creds).  
+Each subdirectory contains the relevant access keys / tokens for the corresponding public cloud.  
+Either edit the `credentials` files for your environment, or mount a local directory with the same path structure:
+
+```
+docker run -it -v /Users/tdurden/:/home/user/ artioml/f5-terraform
 ```
 
 &nbsp;&nbsp;
 
-#### `stg (f5-existing-stack-same-az-cluster-byol-3nic-bigip)`
+## Extensibility
+The container will dynamically pull down (and `cd` to) whatever GitHub repository is specified in the `REPO` environment variable. This enables Continuous Delivery of new content every time the container is started and that repository is updated. It also allows you to load and run your own custom Terraform environments.
+
+```shell
+-e "REPO=<GitHub_Username>/<Repo_Name>"
 ```
-terraform apply \
-	-var 'aws_region=eu-central-1' \
-	-var 'tag_name=F5Labs' \
-	-var 'vpc_cidr=10.200.0.0/16' \
-	-var 'mgmt_cidr=10.200.113.0/24' \
-	-var 'ext_cidr=10.200.115.0/24' \
-	-var 'int_cidr=10.200.112.0/24' \
-	-var 'key_path=/home/user/.ssh/id_rsa.pub' \
-	-var 'mgmt_asrc=["0.0.0.0/0"]' \
-	-var 'bigip_cft=https://s3.amazonaws.com/f5-cft/f5-existing-stack-same-az-cluster-byol-3nic-bigip.template' \
-	-var 'bigip_lic1=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA' \
-	-var 'bigip_lic2=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA'
+For [example](https://github.com/ArtiomL/terraform-do):
+```shell
+docker run -it -e "REPO=artioml/terraform-do" artioml/f5-terraform
 ```
 
 &nbsp;&nbsp;
 
-#### `prod (f5-existing-stack-across-az-cluster-byol-3nic-bigip)`
-```
-terraform apply \
-	-var 'aws_region=eu-central-1' \
-	-var 'tag_name=F5Labs' \
-	-var 'vpc_cidr=10.200.0.0/16' \
-	-var 'mgmt1_cidr=10.200.113.0/24' \
-	-var 'mgmt2_cidr=10.200.123.0/24' \
-	-var 'ext1_cidr=10.200.115.0/24' \
-	-var 'ext2_cidr=10.200.125.0/24' \
-	-var 'int1_cidr=10.200.112.0/24' \
-	-var 'int2_cidr=10.200.122.0/24' \
-	-var 'key_path=/home/user/.ssh/id_rsa.pub' \
-	-var 'mgmt_asrc=["0.0.0.0/0"]' \
-	-var 'bigip_cft=https://s3.amazonaws.com/f5-cft/f5-existing-stack-across-az-cluster-byol-3nic-bigip.template' \
-	-var 'bigip_lic1=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA' \
-	-var 'bigip_lic2=ABCDE-FGHIJ-KLMNO-PQRST-UVWXYZA'
-```
 
-&nbsp;&nbsp;
-
-```
-docker run -it \
-	-v /path/to/your/id_rsa.pub:/home/user/.ssh/id_rsa.pub \
-	-v /path/to/your/credentials:/home/user/.aws/credentials \
-	artioml/f5-terraform
-```
